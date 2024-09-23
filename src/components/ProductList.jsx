@@ -35,6 +35,51 @@ const ProductList = () => {
       if (observer) observer.disconnect();
     };
   }, [hasMore, page]);
+
+  // 2nd way
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     const res = await fetch(
+  //       `https://dummyjson.com/products?limit=${limit}&skip=${page * limit}`
+  //     );
+  //     const data = await res.json();
+
+  //     if (data.products.length === 0) {
+  //       setHasMore(false);
+  //     } else {
+  //       setProducts((prevProducts) => [...prevProducts, ...data.products]);
+  //       setPage((oldPage) => oldPage + 1);
+  //     }
+  //   };
+
+  //   // another way*
+  //   // const fetchProduct = () => {
+  //   //   fetch(
+  //   //     `https://dummyjson.com/products?limit=${limit}&skip=${page * limit}`
+  //   //   )
+  //   //     .then((res) => res.json())
+  //   //     .then((data) => console.log(data));
+  //   // };
+
+  //   const onIntersection = (items) => {
+  //     const loaderItem = items[0];
+
+  //     if (loaderItem.isIntersecting && hasMore) {
+  //       fetchProduct();
+  //     }
+  //   };
+
+  //   const observer = new IntersectionObserver(onIntersection);
+
+  //   if (observer && loaderRef.current) {
+  //     observer.observe(loaderRef.current);
+  //   }
+
+  //   return () => {
+  //     if (observer) observer.disconnect();
+  //   };
+  // }, [hasMore, page]);
+  //console.log(products);
   return (
     <div className="flex justify-center items-center">
       <div className="mt-14">
